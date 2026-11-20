@@ -1,0 +1,34 @@
+# Render Blueprint for Career Intelligence Backend Services
+# Note: Model 1 (~650 MB RAM) and Model 2 + 230k-row RAG (~1.1 GB RAM) require at least Starter/Standard RAM.
+services:
+  - type: web
+    name: career-ai-model1-fitnet
+    runtime: docker
+    rootDir: model1-fitnet
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "8000"
+      - key: ALLOWED_ORIGINS
+        value: "https://your-vercel-app.vercel.app"
+      - key: ALLOWED_ORIGIN_REGEX
+        value: "^https://.*\\.vercel\\.app$"
+      - key: FITNET_API_KEY
+        sync: false
+
+  - type: web
+    name: career-ai-model2-pathnet-rag
+    runtime: docker
+    rootDir: model2-pathnet
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "8001"
+      - key: ALLOWED_ORIGINS
+        value: "https://your-vercel-app.vercel.app"
+      - key: ALLOWED_ORIGIN_REGEX
+        value: "^https://.*\\.vercel\\.app$"
+      - key: PATHNET_API_KEY
+        sync: false

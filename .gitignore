@@ -1,0 +1,27 @@
+# Dependencies & Build Outputs
+node_modules/
+.next/
+out/
+.vercel/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment & Secrets (NEVER commit)
+.env
+.env.*
+!.env.example
+
+# Logs & OS Artifacts
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Training-Only Raw & Feature Datasets (regenerable via train_*.py)
+*training_features.parquet
+*.csv
+*.rar
+*.zip
